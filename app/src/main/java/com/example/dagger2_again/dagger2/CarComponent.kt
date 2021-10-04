@@ -4,6 +4,7 @@ import com.example.dagger2_again.MainActivity
 import com.example.dagger2_again.car.Car
 import dagger.BindsInstance
 import dagger.Component
+import javax.inject.Named
 
 /** We need this Component interface in order to produce Cars.
  * We can use the first function, getCar(), and call it from MainActivity.
@@ -25,7 +26,10 @@ interface CarComponent {
     interface Builder {
 
         @BindsInstance
-        fun horsePower(horsePower: Int): Builder
+        fun horsePower(@Named("horsePower") horsePower: Int): Builder
+
+        @BindsInstance
+        fun engineCapacity(@Named("engineCapacity") engineCapacity: Int): Builder
 
         fun build(): CarComponent
 
