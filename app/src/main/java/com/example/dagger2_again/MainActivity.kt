@@ -15,7 +15,8 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
 
 //    private lateinit var car: Car
-    @Inject lateinit var car: Car //field injection
+    @Inject lateinit var car1: Car //field injection
+    @Inject lateinit var car2: Car //field injection
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity() {
 
 //        car = carComponent.getCar()
         carComponent.inject(this)
-        car.drive()
+        car1.drive()
+        car2.drive()
     }
 }

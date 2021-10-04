@@ -9,13 +9,11 @@ import javax.inject.Inject
  * The fun enableRemote() is an injected method from Remote class.
  * If the constructor injects, after it the fields and then methods automatically! **/
 
-class Car @Inject constructor(private var engine: Engine, wheels: Wheels) {
-
-    private lateinit var wheels: Wheels
+class Car @Inject constructor(var driver: Driver, var engine: Engine, wheels: Wheels) {
 
     fun drive() {
         engine.startEngine()
-        Log.d("TAG", "driving...")
+        Log.d("TAG", "$driver driving... $this")
     }
 
     @Inject

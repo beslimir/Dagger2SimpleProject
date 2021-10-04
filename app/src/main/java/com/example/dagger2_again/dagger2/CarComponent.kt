@@ -5,6 +5,7 @@ import com.example.dagger2_again.car.Car
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Named
+import javax.inject.Singleton
 
 /** We need this Component interface in order to produce Cars.
  * We can use the first function, getCar(), and call it from MainActivity.
@@ -15,6 +16,7 @@ import javax.inject.Named
  * we can create our ComponentBuilder with the annotation, and create a method
  * which will be used in the MainActivity on the builder. **/
 
+@Singleton
 @Component(modules = [WheelsModule::class, PetrolEngineModule::class])
 interface CarComponent {
 
