@@ -7,10 +7,11 @@ import dagger.Module
 import dagger.Provides
 
 /** As we don't own the classes Wheels, Rims, Tires, we need an Module to provide them
- * (we cant inject their constructors as we don't own them). **/
+ * (we cant inject their constructors as we don't own them).
+ * Because all @Provides methods are static, we can make the module abstract. **/
 
 @Module
-class WheelsModule {
+abstract class WheelsModule {
 
     companion object {
 

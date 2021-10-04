@@ -9,7 +9,7 @@ import dagger.Component
  * The other way is to create an inject() function, and to call it in MainActivity, so all parts
  * of the Car class would Inject automatically after the constructor finishes (fields and methods). **/
 
-@Component(modules = [WheelsModule::class, PetrolEngineModule::class])
+@Component(modules = [WheelsModule::class, DieselEngineModule::class])
 interface CarComponent {
 
     fun getCar(): Car
