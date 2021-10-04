@@ -14,7 +14,10 @@ import javax.inject.Singleton
  *
  * If we want to do for the PetrolEngine like we did for diesel, but in a more efficient way,
  * we can create our ComponentBuilder with the annotation, and create a method
- * which will be used in the MainActivity on the builder. **/
+ * which will be used in the MainActivity on the builder.
+ *
+ * The @Singleton annotation works just in the same component. If we would in the MainActivity
+ * create two carComponent instances, we would also get different drivers... **/
 
 @Singleton
 @Component(modules = [WheelsModule::class, PetrolEngineModule::class])
