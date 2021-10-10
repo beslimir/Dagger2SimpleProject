@@ -21,6 +21,9 @@ import javax.inject.Named
  * Changed @Singleton to @PerActivity, and this will from now on be the ActivityComponent
  * because we want to change the car as soon as we get a new instance of the activity.
  * We will create an AppComponent for the lifetime of the application, e.g. for the Driver.
+ *
+ * Added AppComponent as a dependency in order to know how to get the Driver. Also, add the appComponent()
+ * method to ComponentBuilder in order to use it while instantiating.
  * **/
 
 @PerActivity
