@@ -1,12 +1,10 @@
 package com.example.dagger2_again
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.dagger2_again.car.Car
-import com.example.dagger2_again.car.DieselEngine
-import com.example.dagger2_again.dagger2.DaggerCarComponent
-import com.example.dagger2_again.dagger2.DieselEngineModule
 import javax.inject.Inject
+
 
 /** The DaggerCarComponent.create() is only possible if there are no parameters in the constructor in
  * any of our modules. Otherwise, we use .builder() and add the property .dieselEngineModule() - our
@@ -34,10 +32,13 @@ class MainActivity : AppCompatActivity() {
 //            .build()
 
         /* For petrol engine */
-        val carComponent = DaggerCarComponent.builder()
-            .horsePower(105)
-            .engineCapacity(1600)
-            .build()
+//        val carComponent = DaggerCarComponent.builder()
+//            .horsePower(105)
+//            .engineCapacity(1600)
+//            .build()
+
+        /* Get component from .App class */
+        val carComponent = (application as App).getAppComponent()
 
 //        car = carComponent.getCar()
         carComponent.inject(this)
