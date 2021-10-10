@@ -1,6 +1,5 @@
 package com.example.dagger2_again.dagger2
 
-import com.example.dagger2_again.car.DieselEngine
 import com.example.dagger2_again.car.Engine
 import com.example.dagger2_again.car.PetrolEngine
 import dagger.Binds

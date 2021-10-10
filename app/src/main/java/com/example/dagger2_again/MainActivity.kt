@@ -10,7 +10,11 @@ import javax.inject.Inject
 
 /** The DaggerCarComponent.create() is only possible if there are no parameters in the constructor in
  * any of our modules. Otherwise, we use .builder() and add the property .dieselEngineModule() - our
- * module which has a parameter in the constructor**/
+ * module which has a parameter in the constructor
+ *
+ * If we want to use ComponentBuilder annotation with dieselEngine, we need to pass the variables to the constructor
+ * and use the @Binds method fun the module, and also make them abstract.
+ * **/
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,10 +28,12 @@ class MainActivity : AppCompatActivity() {
 
 //        val carComponent = DaggerCarComponent.create()
 
+        /* For diesel engine (Remove @Component.Builder from CarComponent) */
 //        val carComponent = DaggerCarComponent.builder()
 //            .dieselEngineModule(DieselEngineModule(105))
 //            .build()
 
+        /* For petrol engine */
         val carComponent = DaggerCarComponent.builder()
             .horsePower(105)
             .engineCapacity(1600)
