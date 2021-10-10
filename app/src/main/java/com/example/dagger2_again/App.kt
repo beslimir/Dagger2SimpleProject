@@ -1,8 +1,8 @@
 package com.example.dagger2_again
 
 import android.app.Application
-import com.example.dagger2_again.dagger2.CarComponent
-import com.example.dagger2_again.dagger2.DaggerCarComponent
+import com.example.dagger2_again.dagger2.AppComponent
+import com.example.dagger2_again.dagger2.DaggerAppComponent
 
 /**
  * In order to have an application scope, we implement this Class and add it to Manifest in .name parameter.
@@ -10,18 +10,21 @@ import com.example.dagger2_again.dagger2.DaggerCarComponent
  * if we rotate the screen, for example, because car's scope isn't the same as the application's.
  * **/
 
-class App: Application() {
+class App : Application() {
 
-    private lateinit var component: CarComponent
+    private lateinit var component: AppComponent
 
     override fun onCreate() {
         super.onCreate()
 
-        component = DaggerCarComponent.builder()
-            .horsePower(120)
-            .engineCapacity(1400)
-            .build()
+        //commented while added AppComponent
+//        component = DaggerCarComponent.builder()
+//            .horsePower(120)
+//            .engineCapacity(1400)
+//            .build()
+
+        component = DaggerAppComponent.create()
     }
 
-    fun getAppComponent(): CarComponent = component
+    fun getAppComponent(): AppComponent = component
 }

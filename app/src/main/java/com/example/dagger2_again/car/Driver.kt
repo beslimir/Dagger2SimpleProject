@@ -1,8 +1,6 @@
 package com.example.dagger2_again.car
 
-import javax.inject.Inject
-import javax.inject.Singleton
+//I don't own this class - it's a cleaner solution to use modules
 
-@Singleton
-class Driver @Inject constructor() {
+class Driver {
 }

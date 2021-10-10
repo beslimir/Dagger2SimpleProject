@@ -3,6 +3,7 @@ package com.example.dagger2_again
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dagger2_again.car.Car
+import com.example.dagger2_again.dagger2.DaggerActivityComponent
 import javax.inject.Inject
 
 
@@ -38,10 +39,17 @@ class MainActivity : AppCompatActivity() {
 //            .build()
 
         /* Get component from .App class */
-        val carComponent = (application as App).getAppComponent()
+//        val carComponent = (application as App).getAppComponent()
+        val component = DaggerActivityComponent.builder()
+            .horsePower(105)
+            .engineCapacity(1600)
+            .appComponent((application as App).getAppComponent())
+            .build()
+
+        component.inject(this)
 
 //        car = carComponent.getCar()
-        carComponent.inject(this)
+//        carComponent.inject(this)
         car1.drive()
         car2.drive()
     }

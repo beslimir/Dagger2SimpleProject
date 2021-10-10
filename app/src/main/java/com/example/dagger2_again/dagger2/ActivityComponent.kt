@@ -5,7 +5,6 @@ import com.example.dagger2_again.car.Car
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Named
-import javax.inject.Singleton
 
 /** We need this Component interface in order to produce Cars.
  * We can use the first function, getCar(), and call it from MainActivity.
@@ -17,11 +16,16 @@ import javax.inject.Singleton
  * which will be used in the MainActivity on the builder.
  *
  * The @Singleton annotation works just in the same component. If we would in the MainActivity
- * create two carComponent instances, we would also get different drivers... **/
+ * create two carComponent instances, we would also get different drivers...
+ *
+ * Changed @Singleton to @PerActivity, and this will from now on be the ActivityComponent
+ * because we want to change the car as soon as we get a new instance of the activity.
+ * We will create an AppComponent for the lifetime of the application, e.g. for the Driver.
+ * **/
 
-@Singleton
-@Component(modules = [WheelsModule::class, PetrolEngineModule::class])
-interface CarComponent {
+@PerActivity
+@Component(dependencies = [AppComponent::class], modules = [WheelsModule::class, PetrolEngineModule::class])
+interface ActivityComponent {
 
     fun getCar(): Car
 
@@ -36,7 +40,9 @@ interface CarComponent {
         @BindsInstance
         fun engineCapacity(@Named("engineCapacity") engineCapacity: Int): Builder
 
-        fun build(): CarComponent
+        fun appComponent(component: AppComponent): Builder
+
+        fun build(): ActivityComponent
 
 
 
