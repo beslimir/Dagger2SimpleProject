@@ -13,6 +13,8 @@ import javax.inject.Inject
  *
  * If we want to use ComponentBuilder annotation with dieselEngine, we need to pass the variables to the constructor
  * and use the @Binds method fun the module, and also make them abstract.
+ *
+ * With .appComponent() we connect AppComponent and ActivityComponent
  * **/
 
 class MainActivity : AppCompatActivity() {
