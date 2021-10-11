@@ -4,6 +4,7 @@ import com.example.dagger2_again.MainActivity
 import com.example.dagger2_again.car.Car
 import dagger.BindsInstance
 import dagger.Component
+import dagger.Subcomponent
 import javax.inject.Named
 
 /** We need this Component interface in order to produce Cars.
@@ -24,30 +25,31 @@ import javax.inject.Named
  *
  * Added AppComponent as a dependency in order to know how to get the Driver. Also, add the appComponent()
  * method to ComponentBuilder in order to use it while instantiating.
+ *
+ * Update: Turn ActivityComponent into Subcomponent and use DieselEngineModule in order to get rid of
+ * the ComponentBuilder, for now. Subcomponents can access all the objects in the parent component.
+ * We don't use dependencies parameter anymore.
  * **/
 
 @PerActivity
-@Component(dependencies = [AppComponent::class], modules = [WheelsModule::class, PetrolEngineModule::class])
+@Subcomponent(/*dependencies = [AppComponent::class], */modules = [WheelsModule::class, DieselEngineModule::class])
 interface ActivityComponent {
 
     fun getCar(): Car
 
     fun inject(mainActivity: MainActivity)
 
-    @Component.Builder
-    interface Builder {
-
-        @BindsInstance
-        fun horsePower(@Named("horsePower") horsePower: Int): Builder
-
-        @BindsInstance
-        fun engineCapacity(@Named("engineCapacity") engineCapacity: Int): Builder
-
-        fun appComponent(component: AppComponent): Builder
-
-        fun build(): ActivityComponent
-
-
-
-    }
+//    @Component.Builder
+//    interface Builder {
+//
+//        @BindsInstance
+//        fun horsePower(@Named("horsePower") horsePower: Int): Builder
+//
+//        @BindsInstance
+//        fun engineCapacity(@Named("engineCapacity") engineCapacity: Int): Builder
+//
+//        fun appComponent(component: AppComponent): Builder
+//
+//        fun build(): ActivityComponent
+//    }
 }
