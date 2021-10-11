@@ -29,27 +29,30 @@ import javax.inject.Named
  * Update: Turn ActivityComponent into Subcomponent and use DieselEngineModule in order to get rid of
  * the ComponentBuilder, for now. Subcomponents can access all the objects in the parent component.
  * We don't use dependencies parameter anymore.
+ *
+ * Update: Use PetrolEngine again in order to use Component.Builder which will be turned into Subcomponent.Builder.
+ * Comment the appComponent method because we don't use dependencies anymore
  * **/
 
 @PerActivity
-@Subcomponent(/*dependencies = [AppComponent::class], */modules = [WheelsModule::class, DieselEngineModule::class])
+@Subcomponent(/*dependencies = [AppComponent::class], */modules = [WheelsModule::class, PetrolEngineModule::class])
 interface ActivityComponent {
 
     fun getCar(): Car
 
     fun inject(mainActivity: MainActivity)
 
-//    @Component.Builder
-//    interface Builder {
-//
-//        @BindsInstance
-//        fun horsePower(@Named("horsePower") horsePower: Int): Builder
-//
-//        @BindsInstance
-//        fun engineCapacity(@Named("engineCapacity") engineCapacity: Int): Builder
-//
+    @Subcomponent.Builder
+    interface Builder {
+
+        @BindsInstance
+        fun horsePower(@Named("horsePower") horsePower: Int): Builder
+
+        @BindsInstance
+        fun engineCapacity(@Named("engineCapacity") engineCapacity: Int): Builder
+
 //        fun appComponent(component: AppComponent): Builder
-//
-//        fun build(): ActivityComponent
-//    }
+
+        fun build(): ActivityComponent
+    }
 }

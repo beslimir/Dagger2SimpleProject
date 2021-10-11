@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dagger2_again.car.Car
 import com.example.dagger2_again.dagger2.ActivityComponent
-import com.example.dagger2_again.dagger2.DieselEngineModule
 import javax.inject.Inject
 
 
@@ -20,9 +19,11 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-//    private lateinit var car: Car
-    @Inject lateinit var car1: Car //field injection
-    @Inject lateinit var car2: Car //field injection
+    //    private lateinit var car: Car
+    @Inject
+    lateinit var car1: Car //field injection
+    @Inject
+    lateinit var car2: Car //field injection
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,8 +51,15 @@ class MainActivity : AppCompatActivity() {
 //            .build()
 
         /* Using subcomponents and diesel engine module */
+//        val component: ActivityComponent = (application as App).getAppComponent()
+//            .getActivityComponent(DieselEngineModule(105))
+
+        /* Using subcomponents and petrol engine through SubcomponentBuilder */
         val component: ActivityComponent = (application as App).getAppComponent()
-            .getActivityComponent(DieselEngineModule(105))
+            .getActivityComponentBuilder()
+            .horsePower(105)
+            .engineCapacity(1600)
+            .build()
 
         component.inject(this)
 
